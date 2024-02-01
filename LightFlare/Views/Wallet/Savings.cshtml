@@ -1,0 +1,66 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@section Header {
+    <header>
+		<h2>Savings</h2>
+	</header>
+	<p>Check your saving account</p>
+	<ul class="actions">
+		<li><a href="@Url.Action("Index","Wallet")" class="button">See my balance</a></li>
+        <li><a href="@Url.Action("Transactions","Wallet")" class="button">See transactions</a></li>
+        <li><a href="@Url.Action("CreateTransaction","Wallet")" class="button">Create transaction</a></li>
+	</ul>
+}
+
+<div class="wrapper">
+	<div class="container" id="main">
+        <div class="row col-12">
+            <div class="alert alert-info">
+                Manage a savings account, which you will soon be able to use on other DeFi platforms to make your money work. <br />
+                <b>For now, it only operates on testnet</b>
+            </div>
+        </div>
+		<div class="row gtr-0">
+
+            <div class="col-6">
+                <h3 class="checkUser"></h3><br />
+                <span class="enableAccount" style="display:none;">Your password:</span> <input type="password" id="password" style="display:none;" class="form-control form-control-user"> <br /><br />
+                <input type="button" value="Enable saving account" class="btn btn-success enableAccount" style="display:none;" id="enableAccount" onclick="enableUser()" /><br /><br />
+                
+                <p class="alert alert-warning" id="errorTrx"></p>
+            </div>
+            <div class="col-6">
+                <h3 class="mySavings"></h3>
+                <br />
+                <div class="depostiSavigs" style="display:none;">
+                    Amount: <input type="text" class="form-control" id="amount" /> <br />
+                    Password: <input type="password" class="form-control" id="password2" /> <br />
+                    <input type="button" value="Deposit savings" class="btn-primary button" onclick="depositSaving()" />
+                    <input type="button" value="Withdraw savings" class="btn-primary button" onclick="withdrawSaving()" />
+                </div>
+                
+            </div>
+            <br />
+		</div>
+						
+	</div>
+</div>
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+        var publicKey = localStorage.getItem('publicKey');
+        if(publicKey == null) {
+            location.href = "/Home/Login";
+        }
+        else
+        {
+            checkUserEnabled();
+        }
+
+
+
+    </script>
+}
